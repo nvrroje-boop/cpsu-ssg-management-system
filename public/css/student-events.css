@@ -1,0 +1,87 @@
+/*
+ * Student Events Styles
+ * BEM, codex-compliant, responsive
+ */
+
+.student-events {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.student-events__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.student-events__table-wrapper {
+  overflow-x: auto;
+}
+
+.student-events__table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.student-events__table th,
+.student-events__table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.student-events__table th {
+  background: var(--color-table-header, #f8f9fa);
+  font-weight: 700;
+}
+
+.student-events__badge {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  border-radius: 1em;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #fff;
+}
+.student-events__badge--upcoming {
+  background: var(--color-primary, #007bff);
+}
+.student-events__badge--completed {
+  background: var(--color-success, #28a745);
+}
+.student-events__badge--cancelled {
+  background: var(--color-danger, #dc3545);
+}
+
+.student-events__attendance {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  border-radius: 1em;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #fff;
+}
+.student-events__attendance--present {
+  background: var(--color-success, #28a745);
+}
+.student-events__attendance--absent {
+  background: var(--color-danger, #dc3545);
+}
+.student-events__attendance--pending {
+  background: var(--color-warning, #ffc107);
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .student-events__table th,
+  .student-events__table td {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.95em;
+  }
+  .student-events__title {
+    font-size: 1.3rem;
+  }
+}

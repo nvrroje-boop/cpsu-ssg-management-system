@@ -1,0 +1,57 @@
+/*
+ * x-alert Component Styles
+ * BEM, codex-compliant, accessible
+ */
+
+.x-alert {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  background: var(--color-info-bg, #e9f7fd);
+  color: var(--color-info, #0c5460);
+  border: 1px solid var(--color-info-border, #b8daff);
+  position: relative;
+}
+.x-alert--success {
+  background: var(--color-success-bg, #e6f9ed);
+  color: var(--color-success, #155724);
+  border-color: var(--color-success-border, #c3e6cb);
+}
+.x-alert--danger {
+  background: var(--color-danger-bg, #f8d7da);
+  color: var(--color-danger, #721c24);
+  border-color: var(--color-danger-border, #f5c6cb);
+}
+.x-alert--warning {
+  background: var(--color-warning-bg, #fff3cd);
+  color: var(--color-warning, #856404);
+  border-color: var(--color-warning-border, #ffeeba);
+}
+.x-alert--info {
+  background: var(--color-info-bg, #e9f7fd);
+  color: var(--color-info, #0c5460);
+  border-color: var(--color-info-border, #b8daff);
+}
+.x-alert__icon {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+.x-alert__message {
+  flex: 1 1 auto;
+}
+.x-alert__close {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}

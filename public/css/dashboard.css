@@ -1,0 +1,574 @@
+/* Dashboard pages: mobile-first base */
+
+.dashboard {
+    display: grid;
+    gap: 1rem;
+}
+
+.dashboard__hero {
+    overflow: hidden;
+}
+
+.dashboard-hero {
+    position: relative;
+    padding: 1.25rem;
+    border-radius: 28px;
+    color: var(--cream);
+    background:
+        radial-gradient(circle at top right, rgba(245, 208, 96, 0.18), transparent 26%),
+        linear-gradient(135deg, #0f2d1c 0%, #18462d 60%, #0f2d1c 100%);
+    box-shadow: var(--shadow-md);
+}
+
+.dashboard-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -12% -36% auto;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(245, 208, 96, 0.09);
+}
+
+.dashboard-hero__content,
+.dashboard-hero__actions {
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(245, 237, 224, 0.1);
+    color: rgba(245, 237, 224, 0.92);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.dashboard-hero__title {
+    margin: 0.8rem 0 0;
+    font-size: 1.7rem;
+    line-height: 1.15;
+    color: var(--cream);
+}
+
+.dashboard-hero__description {
+    max-width: 62ch;
+    margin: 0.85rem 0 0;
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: rgba(245, 237, 224, 0.84);
+}
+
+.dashboard-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1rem;
+}
+
+.dashboard-hero__actions {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+}
+
+.dashboard-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(245, 237, 224, 0.1);
+    border: 1px solid rgba(245, 237, 224, 0.14);
+    color: rgba(245, 237, 224, 0.88);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* Enhanced action button styles for better readability */
+.student-action-btn,
+.dashboard-hero__actions button,
+.dashboard-hero__actions a {
+    padding: 0.85rem 1.25rem !important;
+    font-size: 0.975rem !important;
+    font-weight: 650 !important;
+    min-height: 44px !important;
+    border-radius: var(--r-md) !important;
+    transition: all 0.2s ease !important;
+}
+
+.dashboard__metrics {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+}
+
+/* Officer dashboard: 3-col desktop, 2-col tablet, 1-col mobile, 4-col xl */
+.dashboard__metrics--officer {
+    grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+    .dashboard__metrics--officer { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+    .dashboard__metrics--officer { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1280px) {
+    .dashboard__metrics--officer { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Student dashboard: 3-col desktop, 2-col tablet, 1-col mobile */
+.dashboard__metrics--student {
+     grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+     .dashboard__metrics--student { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+     .dashboard__metrics--student { grid-template-columns: repeat(3, 1fr); }
+}
+
+.dashboard-metric {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.1rem 1rem;
+    background: var(--surface);
+    border: 1px solid rgba(15, 45, 28, 0.08);
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.dashboard-metric__icon {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 16px;
+}
+
+.dashboard-metric__icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.dashboard-metric__icon--green {
+    background: var(--ssg-50);
+    color: var(--ssg-700);
+}
+
+.dashboard-metric__icon--amber {
+    background: var(--gold-50);
+    color: var(--gold-700);
+}
+
+.dashboard-metric__icon--info {
+    background: var(--info-bg);
+    color: var(--info-text);
+}
+
+.dashboard-metric__label {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.dashboard-metric__value {
+    margin: 0.3rem 0 0;
+    font-size: 1.95rem;
+    line-height: 1.05;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.dashboard-metric__caption {
+    margin: 0.35rem 0 0;
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+
+.dashboard__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.dashboard-chart {
+    position: relative;
+    min-height: 260px;
+}
+
+.dashboard-list {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.dashboard-list__item {
+    display: grid;
+    gap: 0.55rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(15, 45, 28, 0.08);
+}
+
+.dashboard-list__item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.dashboard-list__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.dashboard-list__title {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.dashboard-list__meta,
+.dashboard-list__note {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+
+.dashboard-list__empty {
+    padding: 0.5rem 0;
+    color: var(--text-muted);
+}
+
+.dashboard-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+/* Officer dashboard quick actions: responsive button row */
+.dashboard__actions--officer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+@media (min-width: 640px) {
+    .dashboard__actions--officer {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: var(--space-lg);
+    }
+}
+
+/* Student dashboard quick actions: responsive button row */
+.dashboard__actions--student {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+@media (min-width: 640px) {
+    .dashboard__actions--student {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: var(--space-lg);
+    }
+}
+
+.dashboard-note {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.dashboard-note__item {
+    padding: 0.95rem 1rem;
+    border-radius: 18px;
+    background: rgba(15, 45, 28, 0.03);
+    border: 1px solid rgba(15, 45, 28, 0.08);
+}
+
+.dashboard-note__title {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.dashboard-note__text {
+    margin: 0.35rem 0 0;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.dashboard-table-wrap {
+    width: 100%;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.dashboard-table thead {
+    display: none;
+}
+
+.dashboard-table tbody,
+.dashboard-table tr,
+.dashboard-table td {
+    display: block;
+    width: 100%;
+}
+
+.dashboard-table tr {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(15, 45, 28, 0.08);
+}
+
+.dashboard-table tr:last-child {
+    border-bottom: 0;
+}
+
+.dashboard-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+}
+
+.dashboard-table td::before {
+    content: attr(data-label);
+    flex: 0 0 42%;
+    font-size: 0.76rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.dashboard-table__empty {
+    padding: 1.15rem;
+}
+
+.dashboard-table__empty h3,
+.dashboard-table__empty p {
+    margin: 0;
+}
+
+.dashboard-table__empty p {
+    margin-top: 0.45rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Enhanced action button styles for better readability */
+.student-action-btn,
+.dashboard-hero__actions button,
+.dashboard-hero__actions a {
+    padding: 0.85rem 1.25rem !important;
+    font-size: 0.975rem !important;
+    font-weight: 650 !important;
+    min-height: 44px !important;
+    border-radius: var(--r-md) !important;
+    transition: all 0.2s ease !important;
+}
+
+@media (max-width: 480px) {
+    .student-action-btn,
+    .dashboard-hero__actions button,
+    .dashboard-hero__actions a {
+        padding: 0.85rem 1.1rem !important;
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+        min-height: 44px !important;
+        width: 100% !important;
+    }
+
+    .dashboard-hero__actions {
+        gap: 0.5rem;
+    }
+
+    .dashboard-hero__title {
+        font-size: 1.9rem;
+    }
+
+    .dashboard-hero__description {
+        font-size: 0.98rem;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+    .dashboard-hero__actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .student-action-btn,
+    .dashboard-hero__actions button,
+    .dashboard-hero__actions a {
+        padding: 0.9rem 1.1rem !important;
+        font-size: 0.96rem !important;
+        font-weight: 700 !important;
+        min-height: 44px !important;
+    }
+
+    .dashboard-hero__title {
+        font-size: 2rem;
+    }
+
+    .dashboard-hero__description {
+        font-size: 0.99rem;
+    }
+}
+
+/* >= 640px */
+@media (min-width: 640px) {
+    .dashboard-hero {
+        padding: 1.5rem;
+    }
+
+    .dashboard__metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* >= 768px */
+@media (min-width: 768px) {
+    .dashboard {
+        gap: 1.25rem;
+    }
+
+    .dashboard-hero {
+        padding: 1.8rem;
+    }
+
+    .dashboard-hero__title {
+        font-size: 2.5rem;
+        line-height: 1.1;
+    }
+
+    .dashboard-hero__description {
+        font-size: 1.05rem;
+        line-height: 1.75;
+    }
+
+    .student-action-btn,
+    .dashboard-hero__actions button,
+    .dashboard-hero__actions a {
+        padding: 0.95rem 1.5rem !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        min-height: 48px !important;
+    }
+
+    .dashboard-table thead {
+        display: table-header-group;
+    }
+
+    .dashboard-table tbody {
+        display: table-row-group;
+    }
+
+    .dashboard-table tr {
+        display: table-row;
+        padding: 0;
+    }
+
+    .dashboard-table td,
+    .dashboard-table th {
+        display: table-cell;
+    }
+
+    .dashboard-table thead th {
+        padding: 0.9rem 1rem;
+        background: var(--ssg-800);
+        color: var(--cream);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        text-align: left;
+    }
+
+    .dashboard-table tbody tr:nth-child(even) {
+        background: var(--surface-2);
+    }
+
+    .dashboard-table tbody tr:hover {
+        background: var(--ssg-50);
+    }
+
+    .dashboard-table td {
+        padding: 0.95rem 1rem;
+    }
+
+    .dashboard-table td::before {
+        content: none;
+    }
+}
+
+/* >= 1024px */
+@media (min-width: 1024px) {
+    .dashboard__metrics {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .dashboard__grid--two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-hero {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
+
+    .dashboard-hero__actions {
+        width: min(320px, 100%);
+        flex-shrink: 0;
+    }
+}
+
+/* >= 1280px */
+@media (min-width: 1280px) {
+    .dashboard-hero {
+        padding: 2rem;
+    }
+
+    .dashboard-hero__title {
+        font-size: 2.65rem;
+        line-height: 1.1;
+    }
+
+    .student-action-btn,
+    .dashboard-hero__actions button,
+    .dashboard-hero__actions a {
+        padding: 1rem 1.75rem !important;
+        font-size: 1.05rem !important;
+        min-height: 50px !important;
+    }
+}

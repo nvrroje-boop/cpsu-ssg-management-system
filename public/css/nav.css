@@ -1,0 +1,117 @@
+/* public/css/nav.css */
+.nav {
+  width: 100%;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  height: 60px;
+}
+@media (min-width: 1280px) {
+  .nav__container { padding: 0 var(--space-xl); }
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+}
+.nav__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.nav__title {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+.nav__toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.nav__toggle span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+@media (min-width: 1024px) {
+  .nav__toggle { display: none; }
+}
+.nav__menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  background: var(--color-surface);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  display: none;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-md);
+}
+.nav__menu--open {
+  display: flex;
+}
+@media (min-width: 1024px) {
+  .nav__menu {
+    position: static;
+    width: auto;
+    background: none;
+    box-shadow: none;
+    display: flex !important;
+    flex-direction: row;
+    gap: var(--space-lg);
+    padding: 0;
+  }
+}
+.nav__item {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  transition: background 0.2s;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav__item:hover,
+.nav__item:focus-visible {
+  background: var(--color-primary);
+  color: #fff;
+}
+.nav__item--login {
+  background: var(--color-primary);
+  color: #fff;
+  margin-left: var(--space-md);
+}
+.nav__item--logout {
+  color: var(--color-danger);
+  margin-left: var(--space-md);
+}
+.nav__logout-form {
+  display: inline;
+}

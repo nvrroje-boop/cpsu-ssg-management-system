@@ -1,0 +1,72 @@
+/*
+ * x-modal Component Styles
+ * BEM, codex-compliant, accessible
+ */
+
+.x-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.x-modal[x-show="true"] {
+  pointer-events: auto;
+}
+.x-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+.x-modal__content {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  max-width: 90vw;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  min-width: 300px;
+}
+.x-modal--sm .x-modal__content { max-width: 400px; }
+.x-modal--md .x-modal__content { max-width: 600px; }
+.x-modal--lg .x-modal__content { max-width: 900px; }
+.x-modal--xl .x-modal__content { max-width: 1200px; }
+.x-modal--2xl .x-modal__content { max-width: 1400px; }
+
+.x-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.x-modal__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.x-modal__close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 0.5rem;
+}
+.x-modal__body {
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .x-modal__content {
+    padding: 1rem 0.5rem;
+    min-width: 0;
+  }
+  .x-modal__title {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,137 @@
+:root {
+    --auth-bg: radial-gradient(circle at top left, #dceeff 0%, #f8fbff 48%, #f4f6f9 100%);
+    --auth-panel: rgba(255,255,255,.92);
+    --auth-line: #d4dfeb;
+    --auth-text: #17324d;
+    --auth-muted: #66798e;
+    --auth-brand: #0f5ea8;
+    --auth-danger: #b42318;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: var(--auth-bg);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--auth-text);
+}
+
+.wrap {
+    width: min(980px, 100%);
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    background: var(--auth-panel);
+    border: 1px solid var(--auth-line);
+    border-radius: 28px;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 24px 80px rgba(12, 45, 78, .12);
+}
+
+.hero {
+    padding: 42px;
+    background: linear-gradient(160deg, #0f5ea8 0%, #083d6b 100%);
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 2.4rem;
+    margin: 0 0 16px;
+    line-height: 1.1;
+}
+
+.hero p {
+    color: rgba(255,255,255,.82);
+    line-height: 1.7;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.14);
+    margin-bottom: 18px;
+    font-size: .88rem;
+}
+
+.panel {
+    padding: 34px;
+}
+
+.panel h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+input,
+select {
+    width: 100%;
+    border: 1px solid var(--auth-line);
+    border-radius: 14px;
+    padding: 12px 14px;
+    font: inherit;
+}
+
+.button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 13px 16px;
+    background: var(--auth-brand);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.help {
+    font-size: .92rem;
+    color: var(--auth-muted);
+    line-height: 1.7;
+}
+
+.flash {
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    background: #eff8ff;
+    border: 1px solid #b2ddff;
+    color: #175b8a;
+}
+
+.errors {
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    background: #fef3f2;
+    border: 1px solid #fecdca;
+    color: var(--auth-danger);
+}
+
+@media (max-width: 860px) {
+    .wrap {
+        grid-template-columns: 1fr;
+    }
+
+    .hero,
+    .panel {
+        padding: 24px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+}

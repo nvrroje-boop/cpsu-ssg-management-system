@@ -1,0 +1,167 @@
+/* Admin-specific styles */
+
+/* Cards and sections */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-lg);
+    padding: var(--sp-lg);
+    box-shadow: var(--shadow-xs);
+}
+
+.card + .card {
+    margin-top: var(--sp-lg);
+}
+
+/* Section headers */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--sp-lg);
+    padding-bottom: var(--sp-lg);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Grid layouts */
+.grid {
+    display: grid;
+    gap: var(--sp-lg);
+}
+
+.grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table tr {
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.table tr:last-child {
+    border-bottom: none;
+}
+
+.table td {
+    padding: var(--sp-md);
+    vertical-align: top;
+}
+
+.table td:first-child {
+    color: var(--muted);
+    width: 30%;
+}
+
+/* Forms */
+.form-grid {
+    display: grid;
+    gap: var(--sp-lg);
+}
+
+.form-grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: var(--sp-sm);
+}
+
+.field input,
+.field select,
+.field textarea {
+    padding: var(--sp-md);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-pale);
+}
+
+.field small {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: var(--sp-sm);
+}
+
+.input-with-action {
+    display: flex;
+    gap: var(--sp-sm);
+}
+
+.input-with-action input {
+    flex: 1;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: var(--sp-md);
+    justify-content: flex-end;
+    margin-top: var(--sp-lg);
+    padding-top: var(--sp-lg);
+    border-top: 1px solid var(--border-soft);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grid.cols-2,
+    .grid.cols-3,
+    .form-grid.cols-2,
+    .form-grid.cols-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .section-header a {
+        margin-top: var(--sp-md);
+        width: 100%;
+    }
+}

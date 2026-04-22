@@ -1,0 +1,30 @@
+/*
+ * x-badge Component Styles
+ * BEM, codex-compliant
+ */
+
+.x-badge {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  border-radius: 1em;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-secondary, #6c757d);
+}
+.x-badge--success {
+  background: var(--color-success, #28a745);
+}
+.x-badge--danger {
+  background: var(--color-danger, #dc3545);
+}
+.x-badge--warning {
+  background: var(--color-warning, #ffc107);
+  color: #333;
+}
+.x-badge--info {
+  background: var(--color-info, #17a2b8);
+}
+.x-badge--default {
+  background: var(--color-secondary, #6c757d);
+}

@@ -1,0 +1,73 @@
+/*
+ * Student QR Scan Styles
+ * BEM, codex-compliant, responsive
+ */
+
+.student-qr-scan {
+  padding: 2rem 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.student-qr-scan__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.student-qr-scan__scanner {
+  margin-bottom: 2rem;
+}
+
+.student-qr-scan__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  border: 2px dashed var(--color-border, #ccc);
+  border-radius: 8px;
+  background: #fafbfc;
+  margin-bottom: 1rem;
+}
+
+.student-qr-scan__icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.student-qr-scan__start-btn {
+  padding: 0.6em 2em;
+  border: none;
+  border-radius: 4px;
+  background: var(--color-primary, #007bff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.student-qr-scan__start-btn:focus {
+  outline: 2px solid var(--color-primary, #007bff);
+}
+
+.student-qr-scan__result {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-success, #28a745);
+}
+
+.student-qr-scan__result-label {
+  margin-right: 0.5em;
+}
+
+@media (max-width: 600px) {
+  .student-qr-scan__title {
+    font-size: 1.3rem;
+  }
+  .student-qr-scan__placeholder {
+    padding: 1rem 0.5rem;
+  }
+}

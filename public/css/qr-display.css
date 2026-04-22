@@ -1,0 +1,60 @@
+/* public/css/qr-display.css */
+.qr-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-2xl) 0;
+}
+.qr-display__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+  color: var(--color-primary);
+}
+.qr-display__event-info {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+.qr-display__event-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.qr-display__event-date {
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+.qr-display__code-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--space-xl) 0 var(--space-lg) 0;
+}
+.qr-display__code {
+  width: 200px;
+  height: 200px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 640px) {
+  .qr-display__code { width: 280px; height: 280px; }
+}
+@media (min-width: 1280px) {
+  .qr-display__code { width: 320px; height: 320px; }
+}
+.qr-display__countdown {
+  font-size: 1.1rem;
+  color: var(--color-danger);
+  margin-bottom: var(--space-lg);
+}
+.qr-display__print {
+  margin-top: var(--space-md);
+}
+@media print {
+  .nav, .app__main > *:not(.qr-display), .qr-display__print { display: none !important; }
+  .qr-display { padding: 0; }
+  .qr-display__code { box-shadow: none; }
+}
