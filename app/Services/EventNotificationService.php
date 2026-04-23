@@ -74,6 +74,24 @@ class EventNotificationService
             }
         }
 
+        app(SystemNotificationService::class)->broadcastToRole(
+            'admin',
+            'New Event Created',
+            'A new event has been published: '.$event->event_title.'.',
+            'event',
+            route('admin.events.show', $event->id),
+            $event,
+        );
+
+        app(SystemNotificationService::class)->broadcastToRole(
+            'ssg',
+            'New Event Created',
+            'A new event has been published: '.$event->event_title.'.',
+            'event',
+            route('officer.events.show', $event->id),
+            $event,
+        );
+
         return $stats;
     }
 }

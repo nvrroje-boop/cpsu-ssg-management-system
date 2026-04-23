@@ -149,6 +149,13 @@ a,
     text-transform: uppercase;
 }
 
+.public-nav-actions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 .nav-links {
     display: flex;
     align-items: center;
@@ -169,12 +176,21 @@ a,
     color: var(--text-primary);
 }
 
+.nav-link--kiosk {
+    color: var(--gold-700);
+    font-weight: 700;
+}
+
+.nav-link--action {
+    display: none;
+}
+
 .nav-portal-link {
     display: none;
 }
 
 .nav-btn {
-    display: none;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0.4rem 0.85rem;
@@ -215,9 +231,9 @@ a,
 .hero {
     position: relative;
     min-height: calc(100vh - 64px);
-    background-image: url('/campus-building.jpeg');
+    background-image: url('/cpsu-building.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center 34%;
     display: grid;
     align-items: center;
     padding: 4rem 0;
@@ -372,7 +388,8 @@ a,
 }
 
 .btn-gold,
-.btn-ghost {
+.btn-ghost,
+.btn-kiosk {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -395,6 +412,18 @@ a,
 .btn-gold:hover {
     background: var(--gold-400);
     box-shadow: 0 4px 12px rgba(212, 160, 23, 0.35);
+}
+
+.btn-kiosk {
+    background: rgba(245, 237, 224, 0.12);
+    color: var(--cream);
+    border: 1px solid rgba(245, 208, 96, 0.45);
+    backdrop-filter: blur(10px);
+}
+
+.btn-kiosk:hover {
+    background: rgba(245, 237, 224, 0.2);
+    border-color: rgba(245, 208, 96, 0.75);
 }
 
 .btn-ghost {
@@ -511,6 +540,56 @@ a,
     color: var(--text-muted);
     margin: 0;
     line-height: 1.6;
+}
+
+.hero-kiosk-card {
+    margin-bottom: 0.85rem;
+    padding: 1rem;
+    border-radius: var(--r-lg);
+    background: linear-gradient(135deg, rgba(15, 45, 28, 0.96), rgba(30, 92, 53, 0.9));
+    color: var(--cream);
+    box-shadow: var(--shadow-md);
+}
+
+.hero-kiosk-card__eyebrow {
+    display: inline-block;
+    margin-bottom: 0.45rem;
+    color: rgba(245, 208, 96, 0.95);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-kiosk-card strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+}
+
+.hero-kiosk-card p {
+    margin: 0 0 0.75rem;
+    color: rgba(245, 237, 224, 0.88);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.hero-kiosk-card__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    padding: 0.55rem 0.9rem;
+    border-radius: var(--r-pill);
+    background: rgba(245, 208, 96, 0.14);
+    border: 1px solid rgba(245, 208, 96, 0.36);
+    color: var(--cream);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.hero-kiosk-card__link:hover {
+    background: rgba(245, 208, 96, 0.22);
 }
 
 .hero-summary-footer {
@@ -955,6 +1034,12 @@ a,
     margin-top: 0.4rem;
 }
 
+.cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
 .site-footer {
     border-top: 0.5px solid var(--border);
     padding: 24px 0;
@@ -1019,6 +1104,10 @@ a,
         display: inline-block;
     }
 
+    .nav-btn {
+        display: none;
+    }
+
     .nav-links {
         display: none;
     }
@@ -1052,11 +1141,25 @@ a,
         transition: all 0.2s ease;
     }
 
+    .nav-links.open .nav-link--action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ssg-700);
+        color: var(--cream);
+    }
+
     .nav-links.open .nav-link:active,
     .nav-links.open .nav-link:hover {
         background: var(--ssg-200);
         color: var(--ssg-900);
         transform: translateY(0);
+    }
+
+    .nav-links.open .nav-link--action:active,
+    .nav-links.open .nav-link--action:hover {
+        background: var(--ssg-900);
+        color: var(--cream);
     }
 }
 
@@ -1143,6 +1246,7 @@ a,
 
     .btn-gold,
     .btn-ghost,
+    .btn-kiosk,
     .nav-cta {
         width: 100%;
         padding: 1rem 1.5rem;
@@ -1185,7 +1289,6 @@ a,
     .site-footer {
         padding: 1.5rem 0;
     }
-}
 
     .hero-status-list,
     .snapshot-grid {

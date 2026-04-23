@@ -59,7 +59,7 @@ class EventAttendanceWorkflowService
         return $refreshed->fresh();
     }
 
-    public function stopSession(Event $event, User $actor): Event
+    public function stopSession(Event $event, ?User $actor = null): Event
     {
         $event->forceFill([
             'attendance_active' => false,
@@ -75,7 +75,7 @@ class EventAttendanceWorkflowService
             ->where('status', '!=', 'absent')
             ->update([
                 'status' => 'incomplete',
-                'recorded_by_user_id' => $actor->id,
+                'recorded_by_user_id' => $actor?->id,
             ]);
 
         $this->notifyEventAudience(
@@ -87,6 +87,11 @@ class EventAttendanceWorkflowService
         );
 
         return $event->fresh();
+    }
+
+    public function dispatchAudienceNotification(Event $event, string $title, string $message, string $type, string $studentLink): void
+    {
+        $this->notifyEventAudience($event, $title, $message, $type, $studentLink);
     }
 
     public function extendSession(Event $event, int $minutes, ?string $window = null): Event
@@ -360,11 +365,28 @@ class EventAttendanceWorkflowService
     {
         if ($event->visibility === 'public' && $event->department_id === null) {
             $this->notificationService->broadcastToRole('student', $title, $message, $type, $link, $event);
-            return;
+        } else {
+            $students = $this->eligibleStudentsQuery($event)->get();
+            $this->notificationService->createForUsers($students, $title, $message, $type, $link, $event);
         }
 
-        $students = $this->eligibleStudentsQuery($event)->get();
-        $this->notificationService->createForUsers($students, $title, $message, $type, $link, $event);
+        $this->notificationService->broadcastToRole(
+            'admin',
+            $title,
+            $message,
+            $type,
+            route('admin.events.show', $event->id),
+            $event,
+        );
+
+        $this->notificationService->broadcastToRole(
+            'ssg',
+            $title,
+            $message,
+            $type,
+            route('officer.events.show', $event->id),
+            $event,
+        );
     }
 
     private function resolveStudentFromPayload(string $payload): ?User

@@ -1,4 +1,4 @@
-<div class="notification-bell-wrapper" wire:ignore>
+<div class="notification-bell-wrapper" wire:poll.5s="refreshNotifications">
     <button
         class="notification-bell"
         @click="@this.toggleDropdown"
@@ -30,7 +30,13 @@
 
             <div class="notification-list">
                 @forelse ($notifications as $notification)
-                    <div class="notification-item {{ !$notification['read'] ? 'unread' : '' }}" wire:key="notif-{{ $notification['id'] }}">
+                    <div
+                        class="notification-item {{ !$notification['read'] ? 'unread' : '' }}"
+                        wire:key="notif-{{ $notification['id'] }}"
+                        wire:click="openNotification({{ $notification['id'] }})"
+                        role="button"
+                        tabindex="0"
+                    >
                         <div class="notification-content">
                             <h4 class="notification-item-title">{{ $notification['title'] }}</h4>
                             <p class="notification-item-message">{{ $notification['message'] }}</p>
@@ -38,11 +44,12 @@
                         </div>
                         @if (!$notification['read'])
                             <button
+                                type="button"
                                 class="notification-read-btn"
-                                wire:click="markAsRead({{ $notification['id'] }})"
+                                wire:click.stop="markAsRead({{ $notification['id'] }})"
                                 aria-label="Mark as read"
                             >
-                                ●
+                                &bull;
                             </button>
                         @endif
                     </div>
@@ -54,7 +61,7 @@
             </div>
 
             <div class="notification-footer">
-                <a href="{{ route('notifications.index') }}" class="see-all-link">See all notifications →</a>
+                <a href="{{ route('notifications.index') }}" class="see-all-link">See all notifications &rarr;</a>
             </div>
         </div>
     @endif
@@ -93,7 +100,7 @@
         justify-content: center;
         width: 1.25rem;
         height: 1.25rem;
-        background: #EF4444;
+        background: #ef4444;
         color: white;
         border-radius: 50%;
         font-size: 0.7rem;
@@ -152,12 +159,19 @@
     }
 
     .notification-item {
+        width: 100%;
         padding: 1rem;
         border-bottom: 1px solid var(--border);
+        border-left: none;
+        border-right: none;
+        border-top: none;
         display: flex;
         gap: 0.75rem;
         align-items: flex-start;
+        text-align: left;
+        background: transparent;
         transition: background 0.2s;
+        cursor: pointer;
     }
 
     .notification-item:hover {
@@ -204,7 +218,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.5rem;
+        font-size: 0.6rem;
         flex-shrink: 0;
         margin-top: 0.25rem;
     }

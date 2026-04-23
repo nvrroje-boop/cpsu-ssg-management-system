@@ -9,6 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/welcome.css" rel="stylesheet">
 </head>
+@php
+    $currentUser = auth()->user();
+    $kioskUrl = route('login');
+    $kioskLabel = 'Kiosk Login';
+    $kioskCopy = 'Admins and SSG officers sign in to launch the attendance kiosk.';
+
+    if ($currentUser?->isAdmin()) {
+        $kioskUrl = route('admin.attendance.index');
+        $kioskLabel = 'Open Admin Kiosk';
+        $kioskCopy = 'Jump into the admin attendance workspace and open the event kiosk.';
+    } elseif ($currentUser?->isOfficer()) {
+        $kioskUrl = route('officer.attendance.index');
+        $kioskLabel = 'Open Officer Kiosk';
+        $kioskCopy = 'Jump into the officer attendance workspace and open the event kiosk.';
+    }
+@endphp
 <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header class="public-nav">
@@ -23,7 +39,7 @@
                 </div>
             </a>
 
-            <nav style="position: relative;">
+            <nav class="public-nav-actions">
                 <button class="nav-toggle" type="button" id="navToggle" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
@@ -34,8 +50,12 @@
                     <a href="#announcements" class="nav-link">Announcements</a>
                     <a href="#events" class="nav-link">Events</a>
                     <a href="#about" class="nav-link">About</a>
+                    @if ($currentUser?->isAdmin() || $currentUser?->isOfficer())
+                        <a href="{{ $kioskUrl }}" class="nav-link nav-link--kiosk">Kiosk</a>
+                    @endif
+                    <a href="{{ $kioskUrl }}" class="nav-link nav-link--action">{{ $currentUser?->isAdmin() || $currentUser?->isOfficer() ? 'Open Kiosk' : 'Sign In' }}</a>
                 </div>
-                <a href="{{ route('login') }}" class="nav-btn">Sign In</a>
+                <a href="{{ $kioskUrl }}" class="nav-btn">{{ $currentUser?->isAdmin() || $currentUser?->isOfficer() ? 'Open Kiosk' : 'Sign In' }}</a>
             </nav>
         </div>
     </header>
@@ -47,7 +67,7 @@
                     <span class="ssg-badge"><span class="ssg-badge-dot"></span> Supreme Student Government</span>
                     <h1 class="hero-title">Empowering <span class="hero-title__emphasis">Student Voice</span>.</h1>
                     <h1 class="hero-title">& <span class="hero-title__emphasis">Leadership</span>.</h1>
-                    <p class="hero-body">The official management portal of the Supreme Student Government at Central Philippines State University – Hinoba-an Campus. Stay updated with announcements, events, and student support through a single public-facing portal for official notices, event schedules, and attendance management across CPSU Hinoba-an..</p>
+                    <p class="hero-body">The official management portal of the Supreme Student Government at Central Philippines State University &ndash; Hinoba-an Campus. Stay updated with announcements, events, and student support through a single public-facing portal for official notices, event schedules, and attendance management across CPSU Hinoba-an.</p>
                     <div class="hero-highlights">
                         <div class="hero-highlight">
                             <strong>Public</strong>
@@ -60,6 +80,7 @@
                     </div>
                     <div class="hero-actions">
                         <a href="{{ route('login') }}" class="btn-gold">Open Portal</a>
+                        <a href="{{ $kioskUrl }}" class="btn-kiosk">{{ $kioskLabel }}</a>
                         <a href="#announcements" class="btn-ghost">View Public Updates</a>
                     </div>
                     <div class="hero-proof">
@@ -88,6 +109,12 @@
                         </div>
                         <div class="hero-summary-note">
                             <p>The portal delivers role-based access for all campus activities, announcements, and event management.</p>
+                        </div>
+                        <div class="hero-kiosk-card">
+                            <span class="hero-kiosk-card__eyebrow">Attendance Kiosk</span>
+                            <strong>{{ $kioskLabel }}</strong>
+                            <p>{{ $kioskCopy }}</p>
+                            <a href="{{ $kioskUrl }}" class="hero-kiosk-card__link">Continue to kiosk</a>
                         </div>
                         <div class="hero-summary-footer">
                             <small>Live campus operations, available anytime, anywhere, on all devices.</small>
@@ -259,7 +286,10 @@
                         <h2 class="section-title">Ready to continue into your workspace?</h2>
                         <p>Students, officers, and administrators use the same system with separate dashboards, permissions, and database-backed actions.</p>
                     </div>
-                    <a href="{{ route('login') }}" class="btn-gold">Sign In to Portal</a>
+                    <div class="cta-actions">
+                        <a href="{{ route('login') }}" class="btn-gold">Sign In to Portal</a>
+                        <a href="{{ $kioskUrl }}" class="btn-kiosk">Attendance Kiosk</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -279,7 +309,7 @@
                     <div class="footer-year">Academic Year {{ now()->format('Y') }}</div>
                 </div>
                 <div class="footer-section">
-                    <div class="footer-copy">© {{ now()->format('Y') }} Supreme Student Government. All rights reserved.</div>
+                    <div class="footer-copy">&copy; {{ now()->format('Y') }} Supreme Student Government. All rights reserved.</div>
                 </div>
             </div>
         </div>

@@ -28,6 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withSchedule(function (Schedule $schedule): void {
         $schedule->command('announcements:process')->everyMinute();
+        $schedule->command('attendance:dispatch-alerts')->everyMinute();
 
         $schedule->call(function (): void {
             Notification::query()

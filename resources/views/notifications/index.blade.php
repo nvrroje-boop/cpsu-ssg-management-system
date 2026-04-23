@@ -24,7 +24,7 @@
                             </span>
                         </div>
                         <p class="portal-helper" style="margin-top: 0.75rem;">
-                            {{ strtoupper($notification->type) }} • {{ $notification->created_at?->diffForHumans() }}
+                            {{ strtoupper($notification->type) }} &bull; {{ $notification->created_at?->diffForHumans() }}
                         </p>
                     </a>
                 @empty

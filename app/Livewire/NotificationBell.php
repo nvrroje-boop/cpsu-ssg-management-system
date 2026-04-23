@@ -2,10 +2,11 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
 use App\Models\SystemNotification;
+use App\Services\SystemNotificationService;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class NotificationBell extends Component
 {
@@ -27,26 +28,28 @@ class NotificationBell extends Component
     public function loadNotifications()
     {
         $user = Auth::user();
-        if (!$user) {
+
+        if (! $user) {
             $this->unreadCount = 0;
             $this->notifications = [];
+
             return;
         }
 
-        $this->unreadCount = SystemNotification::where('user_id', $user->id)
-            ->whereNull('read_at')
-            ->count();
+        $notificationService = app(SystemNotificationService::class);
 
-        $this->notifications = SystemNotification::where('user_id', $user->id)
-            ->orderBy('created_at', 'desc')
+        $this->unreadCount = $notificationService->unreadCountForUser($user);
+
+        $this->notifications = $notificationService->queryForUser($user)
             ->limit(5)
             ->get()
-            ->map(fn($n) => [
-                'id' => $n->id,
-                'title' => $n->title,
-                'message' => $n->message,
-                'read' => $n->read_at !== null,
-                'created_at' => $n->created_at->diffForHumans(),
+            ->map(fn (SystemNotification $notification) => [
+                'id' => $notification->id,
+                'title' => $notification->title,
+                'message' => $notification->message,
+                'link' => $notification->link ?: route('notifications.index'),
+                'read' => $notification->read_at !== null,
+                'created_at' => $notification->created_at?->diffForHumans() ?? 'Just now',
             ])->toArray();
     }
 
@@ -61,19 +64,38 @@ class NotificationBell extends Component
     public function markAsRead($notificationId)
     {
         $notification = SystemNotification::find($notificationId);
-        if ($notification) {
-            $notification->update(['read_at' => now()]);
+        $user = Auth::user();
+
+        if ($notification && $user) {
+            app(SystemNotificationService::class)->markRead($user, $notification);
             $this->loadNotifications();
         }
+    }
+
+    public function openNotification($notificationId)
+    {
+        $notification = SystemNotification::find($notificationId);
+        $user = Auth::user();
+
+        if (! $notification || ! $user) {
+            return $this->redirect(route('notifications.index'), navigate: false);
+        }
+
+        if (! app(SystemNotificationService::class)->markRead($user, $notification)) {
+            return $this->redirect(route('notifications.index'), navigate: false);
+        }
+
+        $this->loadNotifications();
+
+        return $this->redirect($notification->link ?: route('notifications.index'), navigate: false);
     }
 
     public function markAllAsRead()
     {
         $user = Auth::user();
+
         if ($user) {
-            SystemNotification::where('user_id', $user->id)
-                ->whereNull('read_at')
-                ->update(['read_at' => now()]);
+            app(SystemNotificationService::class)->markAllRead($user);
             $this->loadNotifications();
         }
     }
