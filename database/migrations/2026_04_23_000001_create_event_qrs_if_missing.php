@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if (! Schema::hasTable('events') || ! Schema::hasTable('users')) {
+        if (Schema::hasTable('event_qrs') || ! Schema::hasTable('events') || ! Schema::hasTable('users')) {
             return;
         }
 
@@ -21,7 +21,6 @@ return new class extends Migration
             $table->timestamp('used_at')->nullable();
             $table->timestamps();
 
-            // Indices for optimization
             $table->index(['event_id', 'user_id']);
             $table->index('token');
             $table->index('expires_at');
