@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 set -eu
 
-export APP_URL="${APP_URL:-${RENDER_EXTERNAL_URL:-http://localhost:${PORT:-10000}}}"
+RAW_APP_URL="${APP_URL:-${RENDER_EXTERNAL_URL:-http://localhost:${PORT:-10000}}}"
+APP_URL="$(printf '%s' "$RAW_APP_URL" | tr -d '\r\n\t')"
+export APP_URL
 
 mkdir -p \
     bootstrap/cache \

@@ -1,5 +1,7 @@
 <?php
 
+use App\Support\AppUrl;
+
 return [
 
     /*
@@ -47,7 +49,7 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+            'local_domain' => env('MAIL_EHLO_DOMAIN', AppUrl::configHost()),
         ],
 
         'ses' => [

@@ -4,6 +4,28 @@ namespace App\Support;
 
 class AppUrl
 {
+    public static function configUrl(): string
+    {
+        $configuredUrl = self::sanitize((string) env('APP_URL', ''));
+
+        if ($configuredUrl !== '') {
+            return rtrim($configuredUrl, '/');
+        }
+
+        $renderUrl = self::sanitize((string) env('RENDER_EXTERNAL_URL', ''));
+
+        if ($renderUrl !== '') {
+            return rtrim($renderUrl, '/');
+        }
+
+        return 'http://localhost';
+    }
+
+    public static function configHost(): string
+    {
+        return parse_url(self::configUrl(), PHP_URL_HOST) ?: 'localhost';
+    }
+
     public static function baseUrl(): string
     {
         $resolver = app(NgrokUrlResolver::class);
@@ -26,5 +48,10 @@ class AppUrl
         $normalizedPath = '/'.ltrim($path, '/');
 
         return $baseUrl.$normalizedPath;
+    }
+
+    private static function sanitize(string $value): string
+    {
+        return trim(str_replace(["\r", "\n", "\t"], '', $value));
     }
 }

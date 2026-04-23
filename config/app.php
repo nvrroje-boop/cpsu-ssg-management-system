@@ -1,5 +1,7 @@
 <?php
 
+use App\Support\AppUrl;
+
 return [
 
     /*
@@ -52,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', env('RENDER_EXTERNAL_URL', 'http://localhost')),
+    'url' => AppUrl::configUrl(),
 
     /*
     |--------------------------------------------------------------------------
