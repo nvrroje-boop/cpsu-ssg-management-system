@@ -37,6 +37,7 @@ What it changes for compatibility:
 - `MAIL_MAILER=log`
 - no worker
 - no cron
+- migrations run during container startup because free Render web services do not support `preDeployCommand`
 
 Free deploy tradeoffs:
 
